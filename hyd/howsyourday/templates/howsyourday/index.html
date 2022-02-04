@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Hows Your Day? In Colour</title>
+        <link rel="stylesheet" href="{% static 'howsyourday/stylesheetmin.css' %}">
+        <style>
+            a {
+                color: #F14668;
+            }
+            ::-moz-selection {
+                background: #FDFD96;
+            }
+            ::selection {
+                background: #FDFD96;
+            }
+            body {
+                overflow: hidden;
+                scrollbar-width: none;
+            }
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            .gradient {
+                background: linear-gradient(270deg, #AA6AC8, #DE7CAF);
+                background-size: 400% 400%;
+    
+                -webkit-animation: animatedGradient 6s ease infinite;
+                -moz-animation: animatedGradient 6s ease infinite;
+                -o-animation: animatedGradient 6s ease infinite;
+                animation: animatedGradient 6s ease infinite;
+            }
+            @-webkit-keyframes animatedGradient {
+                0% {
+                    background-position: 0% 50%
+                }
+    
+                50% {
+                    background-position: 100% 50%
+                }
+    
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+            @-moz-keyframes animatedGradient {
+                0% {
+                    background-position: 0% 50%
+                }
+    
+                50% {
+                    background-position: 100% 50%
+                }
+    
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+            @-o-keyframes animatedGradient {
+                0% {
+                    background-position: 0% 50%
+                }
+    
+                50% {
+                    background-position: 100% 50%
+                }
+    
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+            @keyframes animatedGradient {
+                0% {
+                    background-position: 0% 50%
+                }
+    
+                50% {
+                    background-position: 100% 50%
+                }
+    
+                100% {
+                    background-position: 0% 50%
+                }
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                    $notification = $delete.parentNode;
+    
+                    $delete.addEventListener('click', () => {
+                        $notification.parentNode.removeChild($notification);
+                    });
+                });
+            });
+        </script>        
+    </head>
+    <body>
+        <section class="hero is-success">
+            <div class="hero-body">
+                <nav class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <button type="button" class="button">Previous</button>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <button type="button" class="button">Next</button>
+                        </div>
+                    </div>
+                </nav>
+                <p class="title">Hows your day?</p>
+                <p class="subtitle">Add your name and color below to submit to todays colors, or use the dropdown to check out another day.</p>
+            </div>
+        </section>
+        <div class="level"></div>
+        <div class="tile is-ancestor is-vertical">
+            {% for colorcards in colorTodays %}
+            <div class="tile is-parent" >
+                {% for colorcard in colorcards %}
+                <div class="tile is-parent is-2" style="padding: 12px">
+                    <article class="tile is-child notifaction is-info" style="background-color: #{{colorcard.userColor}};padding: 12px;">
+                    <p class="title">{{colorcard.userName}}</p>
+                    <p class="subtitle">{{colorcard.userText}}</p>
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <section class="hero is-success container">
+                <div class="hero-body container" style="margin:0;">
+                    <p class="title">Want to submit your own?</p>
+                    <form action="/" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <label class="label">Name</label>
+                            <div class="control">
+                                <input name="submitNAME" class="input" type="text" placeholder="">
+                            </div>       
+                        </div>
+                        <div class="field">
+                            <label class="label">Text</label>
+                            <div class="control">
+                                <input name="submitTEXT" class="input" type="text" placeholder="">
+                            </div>       
+                        </div>
+                        <div class="field">
+                            <label class="label">Color (Without # in hex)</label>
+                            <div class="control">
+                                <input name="submitCOLOR" class="input" type="text" placeholder="">
+                            </div>       
+                        </div>
+                        <div class="field">
+                            <input type="submit" class="label button" name="submitSubmission" value="Submit"></input>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+            <strong><p>Made by Macauley Lim</p></strong>
+            </div>
+        </footer>
+    </body>
+</html>
