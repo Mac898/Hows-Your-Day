@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import ColorDecision
 from django.views.decorators.csrf import csrf_protect
@@ -34,3 +34,9 @@ def index(request):
             'situation': ""
         }
         return HttpResponse(template.render(context, request))
+
+def upvote(request, color_id):
+    cda = ColorDecision.objects.get(pk = color_id)
+    cda.votes += 1
+    cda.save()
+    return HttpResponseRedirect('/')

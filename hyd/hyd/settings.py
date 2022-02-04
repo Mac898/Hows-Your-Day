@@ -25,7 +25,7 @@ SECRET_KEY = 'djang1ngf823jn148jnyh901jogjnaldj90`-h`-nf843h&$Y&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["hyd.mltech.net.au", "10.100.1.31"]
+ALLOWED_HOSTS = ["hyd.mltech.net.au", "10.100.1.31", "127.0.0.1"]
 
 # Application definition
 

@@ -102,7 +102,7 @@
         <section class="hero is-success">
             <div class="hero-body">
                 <nav class="level">
-                    <div class="level-left">
+                    <!--<div class="level-left">
                         <div class="level-item">
                             <button type="button" class="button">Previous</button>
                         </div>
@@ -111,10 +111,10 @@
                         <div class="level-item">
                             <button type="button" class="button">Next</button>
                         </div>
-                    </div>
+                    </div> -->
                 </nav>
                 <p class="title">Hows your day?</p>
-                <p class="subtitle">Add your name and color below to submit to todays colors, or use the dropdown to check out another day.</p>
+                <p class="subtitle">Add your name and color below to submit to todays colors</p>
             </div>
         </section>
         <div class="level"></div>
@@ -124,8 +124,9 @@
                 {% for colorcard in colorcards %}
                 <div class="tile is-parent is-2" style="padding: 12px">
                     <article class="tile is-child notifaction is-info" style="background-color: #{{colorcard.userColor}};padding: 12px;">
-                    <p class="title">{{colorcard.userName}}</p>
-                    <p class="subtitle">{{colorcard.userText}}</p>
+                        <p class="title">{{colorcard.userName}} - {{colorcard.votes}}</p>
+                        <p class="subtitle">{{colorcard.userText}}</p>
+                        <a href="upvote/{{colorcard.id}}" class="button">Upvote</a>
                     </article>
                 </div>
                 {% endfor %}
@@ -164,7 +165,7 @@
         </section>
         <footer class="footer">
             <div class="content has-text-centered">
-            <strong><p>Made by Macauley Lim</p></strong>
+            <strong><p>Made by @MagmaMac (macauley.lim at pm.me)</p></strong>
             </div>
         </footer>
     </body>
